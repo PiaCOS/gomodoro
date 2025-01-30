@@ -1,9 +1,11 @@
 # GOMODORO
 
-`gomodoro` is a simple Pomodoro CLI tool built with *Go*. It helps you manage your work and rest intervals by playing sounds at the start and end of each session. You can customize the duration of the sessions using the `-w` (work) and `-r` (rest) flags.
+`gomodoro` is a simple Pomodoro CLI tool built with *Go*. It helps you manage your work and rest intervals by playing sounds at the start and end of each session. 
+
+You can customize the duration of the sessions using the `-w` (work) and `-r` (rest) flags.
 If you do not want sounds to play, enable mute mode with the `-m=true` flag.
 
-You can stop the tool anytime by pressing `Ctrl+C`.
+Stop `gomodoro` anytime by pressing `Ctrl+C`.
 
 ## Usage
 
