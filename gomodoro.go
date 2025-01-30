@@ -60,7 +60,7 @@ func main() {
 	go workPlayer.PlaySound()
 
 	for {
-		time.Sleep(1 * time.Second)
+		time.Sleep(1 * time.Minute)
 		timer++
 
 		t := time.Now()
