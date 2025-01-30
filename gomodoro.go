@@ -48,7 +48,9 @@ func main() {
 		os.Exit(0)
 	}()
 
+	t := time.Now()
 	fmt.Printf("Let's start our session :3\n")
+	fmt.Printf("It's %v\n", t.Format("15:04:05"))
 	fmt.Printf("We will work for %v minutes and then rest for %v minutes !!\n", workTimer, restTimer)
 
 	timer := 0
