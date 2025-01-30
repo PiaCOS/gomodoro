@@ -1,6 +1,7 @@
 # GOMODORO
 
 `gomodoro` is a simple Pomodoro CLI tool built with *Go*. It helps you manage your work and rest intervals by playing sounds at the start and end of each session. You can customize the duration of the sessions using the `-w` (work) and `-r` (rest) flags.
+If you do not want sounds to play, use the `-b=false` flag.
 
 You can stop the tool anytime by pressing `Ctrl+C`.
 
@@ -8,6 +9,7 @@ You can stop the tool anytime by pressing `Ctrl+C`.
 
 ```bash
 Usage of gomodoro:
+  -m    Mute mode (-m=true)
   -r int
         Time in minutes for the rest session (default 5)
   -w int
@@ -22,7 +24,7 @@ To install `gomodoro` you can clone this repo and run the following command insi
 go install
 ```
 
-Ensure that Go is installed on your machine. If not, follow the installation instructions [here](https://go.dev/learn/).
+Ensure that Go is installed on your machine. If not, follow the installation instructions [here](https://go.dev/learn/) (Don't forget to add add the output of `go env GOPATH` to your PATH).
 
 ## Tips
 

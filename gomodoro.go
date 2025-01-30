@@ -22,6 +22,7 @@ var staticFS embed.FS
 var (
 	workFlag      int
 	restFlag      int
+	muteFlag      bool
 	startWorkPath string = "sounds/gomodoro_01.mp3"
 	stopWorkPath  string = "sounds/gomodoro_02.mp3"
 )
@@ -29,6 +30,7 @@ var (
 func main() {
 	flag.IntVar(&workFlag, "w", 25, "Time in minutes for the work session")
 	flag.IntVar(&restFlag, "r", 5, "Time in minutes for the rest session")
+	flag.BoolVar(&muteFlag, "m", false, "Mute mode (-m=true)")
 	flag.Parse()
 
 	exit := make(chan os.Signal, 1)
@@ -92,17 +94,21 @@ type SoundPlayer struct {
 }
 
 func (s SoundPlayer) StartSpeaker() {
-	speaker.Init(s.Format.SampleRate, s.Format.SampleRate.N(time.Second/10))
+	if !muteFlag {
+		speaker.Init(s.Format.SampleRate, s.Format.SampleRate.N(time.Second/10))
+	}
 }
 
 func (s SoundPlayer) PlaySound() {
-	s.Streamer.Seek(0)
+	if !muteFlag {
+		s.Streamer.Seek(0)
 
-	done := make(chan bool)
-	speaker.Play(beep.Seq(s.Streamer, beep.Callback(func() {
-		done <- true
-	})))
-	<-done
+		done := make(chan bool)
+		speaker.Play(beep.Seq(s.Streamer, beep.Callback(func() {
+			done <- true
+		})))
+		<-done
+	}
 }
 
 func NewSoundPlayer(path string) SoundPlayer {
