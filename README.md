@@ -5,7 +5,7 @@
 You can customize the duration of the sessions using the `-w` (work) and `-r` (rest) flags.
 If you do not want sounds to play, enable mute mode with the `-m=true` flag.
 
-Stop `gomodoro` anytime by pressing `Ctrl+C`.
+Stop the `gomodoro` anytime by pressing `Ctrl+C`.
 
 ## Usage
 
@@ -26,7 +26,9 @@ To install `gomodoro` you can clone this repo and run the following command insi
 go install
 ```
 
-Ensure that Go is installed on your machine. If not, follow the installation instructions [here](https://go.dev/learn/) (Don't forget to add add the output of `go env GOPATH` to your PATH).
+Ensure that Go is installed on your machine. If not, follow the installation instructions [here](https://go.dev/learn/).
+
+(Don't forget to add the output of `go env GOPATH` to your PATH).
 
 ## Tips
 
