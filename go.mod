@@ -1,12 +1,12 @@
-module gomodoro
+module github.com/PiaCOS/gomodoro
 
 go 1.23.5
 
 require github.com/gopxl/beep/v2 v2.1.1
 
 require (
-	github.com/ebitengine/purego v0.8.0 // indirect
-	golang.org/x/sys v0.26.0 // indirect
+	github.com/ebitengine/purego v0.8.2 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 )
 
 require (
