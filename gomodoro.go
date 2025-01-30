@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"embed"
 	"flag"
 	"fmt"
 	"log"
@@ -14,11 +16,14 @@ import (
 	"github.com/gopxl/beep/v2/speaker"
 )
 
+//go:embed sounds
+var staticFS embed.FS
+
 var (
 	workFlag      int
 	restFlag      int
-	startWorkPath string = "gomodoro_01.mp3"
-	stopWorkPath  string = "gomodoro_02.mp3"
+	startWorkPath string = "sounds/gomodoro_01.mp3"
+	stopWorkPath  string = "sounds/gomodoro_02.mp3"
 )
 
 func main() {
@@ -70,6 +75,15 @@ func main() {
 	}
 }
 
+// *bytes.Reader does not implement io.ReadCloser (missing method Close)
+type ReadCloser struct {
+	*bytes.Reader
+}
+
+func (rc ReadCloser) Close() error {
+	return nil
+}
+
 type SoundPlayer struct {
 	Streamer beep.StreamSeekCloser
 	Format   beep.Format
@@ -90,12 +104,13 @@ func (s SoundPlayer) PlaySound() {
 }
 
 func NewSoundPlayer(path string) SoundPlayer {
-	f, err := os.Open(path)
+	data, err := staticFS.ReadFile(path)
 	if err != nil {
 		log.Fatal(err)
 	}
+	reader := &ReadCloser{bytes.NewReader(data)}
 
-	streamer, format, err := mp3.Decode(f)
+	streamer, format, err := mp3.Decode(reader)
 	if err != nil {
 		log.Fatal(err)
 	}
